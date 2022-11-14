@@ -6,4 +6,12 @@ def gcd(a, b):
     else:
         return gcd(a, b - a)
 
+
+def gcd2(a, b):
+    if b == 0:
+        return a
+    return gcd2(b, a % b)
+
+
 print(gcd(12, 4))
+print(gcd2(30, 5))
