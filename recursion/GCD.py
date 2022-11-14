@@ -8,9 +8,10 @@ def gcd(a, b):
 
 
 def gcd2(a, b):
-    if b == 0:
-        return a
-    return gcd2(b, a % b)
+    # if b == 0:
+    #     return a
+    # return gcd2(b, a % b)
+    return a if b == 0 else gcd2(b, a % b)
 
 
 print(gcd(12, 4))
