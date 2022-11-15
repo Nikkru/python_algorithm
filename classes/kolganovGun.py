@@ -231,8 +231,10 @@ class Manager:
         Adds new targets.
         '''
         for i in range(self.n_targets):
-            self.targets.append(Target(rad=randint(max(1, 30 - 2 * max(0, self.score_t.score())),
+            self.targets.append(MovingTarget(rad=randint(max(1, 30 - 2 * max(0, self.score_t.score())),
                                                    30 - max(0, self.score_t.score()))))
+            self.targets.append(Target(rad=randint(max(1, 30 - 2 * max(0, self.score_t.score())),
+                                                         30 - max(0, self.score_t.score()))))
 
     def process(self, events, screen):
         '''
