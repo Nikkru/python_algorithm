@@ -68,9 +68,16 @@ class Ball:
             self.vx *= -1
         if self.y-self.vy < 0 or self.y-self.vy > screen.geometry_hight:
             self.vy *= -1
-        self.x += self.vx
-        self.y -= self.vy
+        self.vy -= 1
+        if 0 < self.x+self.vx < screen.geometry_width:
+            self.x += self.vx
+        if 0 < self.y - self.vy < screen.geometry_hight:
+            self.y -= self.vy
         self.set_coords()
+
+        self.vx -= 0.05*self.vx/abs(self.vx)
+        self.vy -= 0.04 * self.vy / abs(self.vy)
+
 
     def hittest(self, obj):
         """Функция проверяет сталкивалкивается ли данный обьект с целью, описываемой в обьекте obj.
