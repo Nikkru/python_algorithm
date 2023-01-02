@@ -92,8 +92,10 @@ class Ball:
         Returns:
             Возвращает True в случае столкновения мяча и цели. В противном случае возвращает False.
         """
-        # FIXME
-        return False
+        if (self.x-obj.x)**2+(self.y-obj.y)**2 > (self.r+obj.r)**2:
+            return False
+        else:
+            return True
 
 
 class Gun:
