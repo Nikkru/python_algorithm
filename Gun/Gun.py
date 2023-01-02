@@ -5,7 +5,7 @@ import time
 
 
 def main():
-    global root, canvas, gun, target, screen_width, screen_hight, screen
+    global root, canvas, gun, target, screen_width, screen_hight, screen, screen1, bullet, balls
     root = tk.Tk()
     screen = Screen(800, 600)
     screen_width = screen.geometry_width
@@ -15,7 +15,7 @@ def main():
     canvas.pack(fill=tk.BOTH, expand=1)
 
     target = Target()
-    screen1 = canvas.create_text(400, 300, text='&&&&&&&', font='28')
+    screen1 = canvas.create_text(400, 300, text='', font='28')
     gun = Gun()
     bullet = 0
     balls = []
@@ -84,8 +84,7 @@ class Ball:
         # if abs(self.vx)-0.05<0 and abs(self.vy)-0.05<0:
         #     canvas.delete((self.id))
 
-
-    def hittest(self, obj):
+    def hit_test(self, obj):
         """Функция проверяет сталкивалкивается ли данный обьект с целью, описываемой в обьекте obj.
         Args:
             obj: Обьект, с которым проверяется столкновение.
@@ -105,7 +104,8 @@ class Gun:
         self.angle = 1
         self.x = 20
         self.y = 50
-        self.id = canvas.create_line(self.x, self.y, self.x+30, self.y-30, width=7) # FIXME: don't know how to set it...
+        self.id = canvas.create_line(self.x, self.y, self.x+30, self.y-30, width=7)
+        # FIXME: don't know how to set it...
 
     def fire2_start(self, event):
         self.f2_on = 2
@@ -188,7 +188,7 @@ def time_handler():
     while target.live or balls:
         for ball in balls:
             ball.move()
-            if ball.hittest(target) and target.live:
+            if ball.hit_test(target) and target.live:
                 target.live = 0
                 target.hit()
                 canvas.bind('<Button-1>', '')
