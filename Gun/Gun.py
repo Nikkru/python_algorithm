@@ -68,7 +68,9 @@ class Ball:
             self.vx *= -1
         if self.y-self.vy < 0 or self.y-self.vy > screen.geometry_hight:
             self.vy *= -1
+
         self.vy -= 1
+
         if 0 < self.x+self.vx < screen.geometry_width:
             self.x += self.vx
         if 0 < self.y - self.vy < screen.geometry_hight:
@@ -77,6 +79,10 @@ class Ball:
 
         self.vx -= 0.05*self.vx/abs(self.vx)
         self.vy -= 0.04 * self.vy / abs(self.vy)
+
+        # удаление объекта за границей фрейма
+        # if abs(self.vx)-0.05<0 and abs(self.vy)-0.05<0:
+        #     canvas.delete((self.id))
 
 
     def hittest(self, obj):
